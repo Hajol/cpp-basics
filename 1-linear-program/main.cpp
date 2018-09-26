@@ -12,7 +12,7 @@ const double PI = 3.14159265;
 int main()
 {
 
-	cout << "Enter a" << endl;
+	cout << "Ente a" << endl;
 	cin >> a;
 
 	z1 = pow(cos(3.0 / 8.0*PI - a / 4.0), 2) - pow(cos(11.0 / 8.0 * PI + a / 4.0), 2);
