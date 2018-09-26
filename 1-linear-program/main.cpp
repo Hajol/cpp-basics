@@ -18,6 +18,6 @@ int main()
 	z1 = pow(cos(3.0 / 8.0*PI - a / 4.0), 2) - pow(cos(11.0 / 8.0 * PI + a / 4.0), 2);
 	z2 = sqrt(2) / 2 * sin(a / 2);
 
-	cout << "if a = " << a << " z1 = " << z1 << "then  z2 = " << z2 << endl;
+	cout << "if a = " << a << " z1 = " << z1 << " then  z2 = " << z2 << endl;
 	return 0;
 }
