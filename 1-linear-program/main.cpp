@@ -11,7 +11,6 @@ int a = 0;
 const double PI = 3.14159265;
 int main()
 {
-	setlocale(LC_CTYPE, "Russian");
 
 	cout << "Enter a" << endl;
 	cin >> a;
