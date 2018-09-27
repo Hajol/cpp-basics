@@ -1,23 +1,22 @@
-# include <iostream>
-# include <iomanip> 
-# include <cstdlib> 
-# include <math.h> 
-# include <ctime> 
+#include <iostream>
+#include <math.h>
 using namespace std;
 
-double z1 = 0;
-double z2 = 0;
-int a = 0;
-const double PI = 3.14159265;
+double z1;
+double z2;
+double x ;
+double y ;
 int main()
 {
 
-	cout << "Enter a" << endl;
-	cin >> a;
+	cout << "Enter x" << endl;
+	cin >> x;
+	cout << "Enter y" << endl;
+	cin >> y;
 
-	z1 = pow(cos(3.0 / 8.0*PI - a / 4.0), 2) - pow(cos(11.0 / 8.0 * PI + a / 4.0), 2);
-	z2 = sqrt(2) / 2 * sin(a / 2);
+	z1 = pow(cos(x), 4) + pow(sin(y),2) + (1.0 / 4.0)*pow(sin(2 * x), 2) - 1;
+	z2 = sin(y + x) * sin(y - x);
 
-	cout << "if a = " << a << " z1 = " << z1 << " then  z2 = " << z2 << endl;
+	cout << "\nz1 = " << z1 << "\nz2 = " << z2 << endl;
 	return 0;
 }
