@@ -2,12 +2,12 @@
 #include <math.h>
 using namespace std;
 
-double z1;
-double z2;
-double x ;
-double y ;
 int main()
 {
+	double z1;
+	double z2;
+	double x;
+	double y;
 
 	cout << "Enter x" << endl;
 	cin >> x;
