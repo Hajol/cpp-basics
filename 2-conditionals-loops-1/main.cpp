@@ -24,39 +24,53 @@ int main() {
 	cin >> dx;
 	if (dx > EPS)
 	{
-		cout << string(25, '-') << endl;
-		cout << "|     X     |     F     |" << endl;
-		cout << string(25, '-') << endl;
+		cout << endl << string(37, '-') << endl;
+		cout << "|" << setw(9) << "x" << setw(9);
+		cout << "|" << setw(9) << "f" << setw(9) << "|";
+		cout << endl << string(37, '-') << endl;
+
+		cout << fixed;
 		cout.precision(3);
-		while (x1 <= x2) {
-			if ((c < 0) and (abs(a) > EPS))
+
+		while (x1 <= x2)
+		{
+			if ((c < 0) && (abs(a) > EPS))
 			{
-				f = -a * pow(x1, 2);
-			}
-			else if ((c > 0) | (abs(a) < EPS))
-			{
-				f = (a - x1) / (c * x1);
+				f = -a * pow(x1,2);
 			}
 			else
 			{
-				f = x1 / c;
+				if ((c > 0) && (abs(a) < EPS))
+				{
+					if (abs(a - x1) > EPS)
+						f = (a - x1) / c * x1;
+					else
+					{
+						cout << "|" << setw(11) << x1 << setw(7);
+						cout << "|" << "  division by zero  |\n";
+						x1 += dx;
+						continue;
+					}
+				}
+				else
+					f = x1 / c;
 			}
 
-			if (abs(int(a) & (int(b) | int(c))) > EPS) {
-				cout << "|" << setw(6) << x1 << setw(6) << "|";
-				cout << setw(6) << f << setw(6) << "|" << endl;
-			}
-			else {
-				cout << "|" << setw(6) << x1 << setw(6) << "|";
-				cout << setw(6) << int(f) << setw(6) << "|" << endl;
-			}
+			cout << "|" << setw(11) << x1 << setw(7) << "|";
+
+			if (((int(a) & int(b)) | (int(a) & int(c))) != 0)
+				cout << setw(11) << f << setw(7);
+			else
+				cout << setw(9) << int(f) << setw(9);
+
+			cout << "|" << endl;
+
 			x1 += dx;
 		}
-		cout << string(25, '-') << endl;
+		cout << string(37, '-') << endl;
 	}
 	else
-	{
 		cout << "Error dx";
-	}
+
 	return 0;
 }
