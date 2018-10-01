@@ -52,7 +52,8 @@ int main() {
 						continue;
 					}
 				}
-				else if (abs(c) > EPS)
+				else 
+					if (abs(c) > EPS)
 					f = x1 / c;
 				else 
 				{ 
