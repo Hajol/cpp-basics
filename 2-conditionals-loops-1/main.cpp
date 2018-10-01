@@ -42,7 +42,7 @@ int main() {
 			{
 				if ((c > 0) && (abs(a) < EPS))
 				{
-					if (abs(a - x1) > EPS)
+					if (abs(ñ * x1) > EPS)
 						f = (a - x1) / c * x1;
 					else
 					{
