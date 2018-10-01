@@ -52,8 +52,15 @@ int main() {
 						continue;
 					}
 				}
-				else
+				else if (abs(c) > EPS)
 					f = x1 / c;
+				else 
+				{ 
+					cout << "|" << setw(11) << x1 << setw(7);
+					cout << "|" << "  division by zero  |\n";
+					x1 += dx;
+					continue;
+				}
 			}
 
 			cout << "|" << setw(11) << x1 << setw(7) << "|";
