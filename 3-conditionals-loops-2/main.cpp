@@ -8,9 +8,9 @@ using namespace std;
 
 int main() {
 	double X1, X2, dX, Eps;
-	long MAxIters = 1000;
+	const int Max_Iter = 1000;
 	cout << fixed;
-	cout << "X must be greater than -1\n";
+	cout << "X must be greater than 1\n";
 	cout << "Please, enter X start: ";
 	cin >> X1;
 	cout << "Please, enter X end: ";
@@ -29,13 +29,13 @@ int main() {
 			<< setw(3) << "|" << setw(12)
 			<< "atan(x)" << setw(3) << "|" << setw(12) << "Iterations" << setw(3) << "|\n"
 			<< string(60, '-') << endl;
-
+		double arc1, arc2;
 
 		for (double x = X1; x <= X2; x += dX) {
 
 			double arc1 = 0, arc2 = M_PI_2;
 
-			for (int n = 0; n < MAxIters; n++) {
+			for (int n = 0; n < Max_Iter; n++) {
 
 				arc2 += pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
 
@@ -47,7 +47,7 @@ int main() {
 				}
 
 
-				if (MAxIters - n < 2) {
+				if (Max_Iter - n < 2) {
 					cout << "small EPS";
 					return 2;
 				}
