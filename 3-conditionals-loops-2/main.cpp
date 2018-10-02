@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
 	double X1, X2, dX, Eps;
-	const int Max_Iter = 1000;
+	const int kMax_Iter = 1000;
 	cout << fixed;
 	cout << "X must be greater than 1\n";
 	cout << "Please, enter X start: ";
