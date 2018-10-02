@@ -33,7 +33,7 @@ int main() {
 
 		for (double x = X1; x <= X2; x += dX) {
 
-			double arc1 = 0, arc2 = M_PI_2;
+			arc1 = 0, arc2 = M_PI_2;
 
 			for (int n = 0; n < Max_Iter; n++) {
 
