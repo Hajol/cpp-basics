@@ -5,6 +5,22 @@
 #include <iomanip>
 
 using namespace std;
+ 
+void Head() {
+	cout << string(60, '-') << "\n|"
+		<< setw(8) << "X" << setw(7)
+		<< "|" << setw(12) << "arctg(x)"
+		<< setw(3) << "|" << setw(12)
+		<< "atan(x)" << setw(3) << "|" << setw(12) << "Iterations" << setw(3) << "|\n"
+		<< string(60, '-') << endl;
+}
+void Table(double arc2, double x, int n )
+{
+		cout << "|" << setw(14) << x
+			<< "|" << setw(14) << arc2 << "|" << setw(14) << atan(x)
+			<< "|" << setw(13) << n << "|\n";
+}
+
 
 int main() {
 	double X1, X2, dX, Eps;
@@ -20,15 +36,11 @@ int main() {
 	cout << "Please, enter EPS: ";
 	cin >> Eps;
 
-	if (dX > 0 && X2 > 1 && X1 > 1 ) {
+	if (dX > 0 && X2 > 1 && X1 > 1) {
 
 
-		cout << string(60, '-') << "\n|"
-			<< setw(8) << "X" << setw(7)
-			<< "|" << setw(12) << "arctg(x)"
-			<< setw(3) << "|" << setw(12)
-			<< "atan(x)" << setw(3) << "|" << setw(12) << "Iterations" << setw(3) << "|\n"
-			<< string(60, '-') << endl;
+		Head();
+
 		double arc1, arc2;
 
 		for (double x = X1; x <= X2; x += dX) {
@@ -41,9 +53,7 @@ int main() {
 
 				if (abs(arc2 - arc1) < Eps) 
 				{
-					cout << "|" << setw(14) << x
-						<< "|" << setw(14) << arc2 << "|" << setw(14) << atan(x)
-						<< "|" << setw(13) << n << "|\n";
+					Table(arc2, x, n);
 					break;
 				}
 
