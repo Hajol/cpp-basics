@@ -21,6 +21,12 @@ void Table(double arc2, double x, int n )
 			<< "|" << setw(13) << n << "|\n";
 }
 
+void formula( double arc2, double n, double x)
+{
+	arc2 += pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
+}
+
+
 
 int main() {
 	double X1, X2, dX, Eps;
@@ -49,7 +55,7 @@ int main() {
 
 			for (int n = 0; n < kMaxIter; n++) {
 
-				arc2 += pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
+				formula(arc2, n, x);
 
 				if (abs(arc2 - arc1) < Eps) 
 				{
