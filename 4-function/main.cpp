@@ -5,7 +5,7 @@
 #include <iomanip>
 
 using namespace std;
- 
+
 void Head() {
 	cout << string(60, '-') << "\n|"
 		<< setw(8) << "X" << setw(7)
@@ -14,14 +14,14 @@ void Head() {
 		<< "atan(x)" << setw(3) << "|" << setw(12) << "Iterations" << setw(3) << "|\n"
 		<< string(60, '-') << endl;
 }
-void Table(double arc2, double x, int n )
+void Table(double arc2, double x, int n)
 {
-		cout << "|" << setw(14) << x
-			<< "|" << setw(14) << arc2 << "|" << setw(14) << atan(x)
-			<< "|" << setw(13) << n << "|\n";
+	cout << "|" << setw(14) << x
+		<< "|" << setw(14) << arc2 << "|" << setw(14) << atan(x)
+		<< "|" << setw(13) << n << "|\n";
 }
 
-void formula( double arc2, double n, double x)
+void formula(double arc2, double n, double x)
 {
 	arc2 += pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
 }
@@ -49,7 +49,7 @@ int main() {
 
 		double arc1, arc2;
 
-		for (double x = X1; x <= X2; x += dX) 
+		for (double x = X1; x <= X2; x += dX)
 		{
 
 			arc1 = 0, arc2 = M_PI_2;
@@ -58,7 +58,7 @@ int main() {
 
 				formula(arc2, n, x);
 
-				if (abs(arc2 - arc1) < Eps) 
+				if (abs(arc2 - arc1) < Eps)
 				{
 					Table(arc2, x, n);
 					break;
