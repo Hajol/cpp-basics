@@ -46,7 +46,7 @@ double Arctg(double x, double Eps, int &n) {
 }
 
 
-int Row(double x, double Eps) {
+int Bow(double x, double Eps) {
 	int n = 0;
 	if (Arctg(x, Eps, n) == 0) {
 		cout << "small EPS";
@@ -85,11 +85,12 @@ int main() {
 		Head();
 		for (double x = x1; x <= x2; x += dx) {
 
-			if (Row(x, Eps)) 
+			if (Bow(x, Eps)) 
 			{
 				continue;
 			}
-			else {
+			else 
+			{
 				break;
 			}
 
