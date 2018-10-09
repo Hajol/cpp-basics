@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void tablehead() {
+void Head() {
 	cout << string(60, '-') << "\n|"
 		<< setw(8) << "X" << setw(7)
 		<< "|" << setw(12) << "arctg(x)"
@@ -16,29 +16,28 @@ void tablehead() {
 		<< string(60, '-') << endl;
 }
 
-double NextElement(double x, int n) {
+double Element(double x, int n) 
+{
 
-	double CurentN = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));;
-
-	return CurentN;
+	double Heard = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
+	return Heard;
 }
 
-double arctg(double x, double Eps, int &n) {
-	long MAxIters = 1000;
+double Arctg(double x, double Eps, int &n) {
+	long kMaxIter = 1000;
 
 	double arc1 = 0, arc2 = M_PI_2;
 
-	for (n = 0; n < MAxIters; n++) {
-		arc2 += NextElement(x, n);
+	for (n = 0; n < kMaxIter; n++) {
+		arc2 +=Element(x, n);
 
 		if (abs(arc2 - arc1) < Eps) {
 			break;
 		}
 
 
-		if (MAxIters - n < 2) {
+		if (kMaxIter - n < 2) {
 			break;
-			return 0;
 		}
 
 		arc1 = arc2;
@@ -47,16 +46,16 @@ double arctg(double x, double Eps, int &n) {
 }
 
 
-int CreateRow(double x, double Eps) {
+int Row(double x, double Eps) {
 	int n = 0;
-	if (arctg(x, Eps, n) == 0) {
+	if (Arctg(x, Eps, n) == 0) {
 		cout << "small EPS";
 		return 0;
 
 	}
 	else {
 		cout << "|" << setw(14) << x
-			<< "|" << setw(14) << arctg(x, Eps, n)
+			<< "|" << setw(14) << Arctg(x, Eps, n)
 			<< "|" << setw(14) << atan(x)
 			<< "|" << setw(13) << n << "|\n";
 		return 1;
@@ -83,10 +82,11 @@ int main() {
 
 	if (dx > 0 && x2 > 1) {
 
-		tablehead();
+		Head();
 		for (double x = x1; x <= x2; x += dx) {
 
-			if (CreateRow(x, Eps)) {
+			if (Row(x, Eps)) 
+			{
 				continue;
 			}
 			else {
