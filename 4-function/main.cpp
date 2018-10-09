@@ -6,78 +6,100 @@
 
 using namespace std;
 
-void Head() {
+void tablehead() {
 	cout << string(60, '-') << "\n|"
 		<< setw(8) << "X" << setw(7)
 		<< "|" << setw(12) << "arctg(x)"
 		<< setw(3) << "|" << setw(12)
-		<< "atan(x)" << setw(3) << "|" << setw(12) << "Iterations" << setw(3) << "|\n"
+		<< "atan(x)" << setw(3) << "|" << setw(12)
+		<< "Iterations" << setw(3) << "|\n"
 		<< string(60, '-') << endl;
 }
-void Table(double arc2, double x, int n)
-{
-	cout << "|" << setw(14) << x
-		<< "|" << setw(14) << arc2 << "|" << setw(14) << atan(x)
-		<< "|" << setw(13) << n << "|\n";
+
+double NextElement(double x, int n) {
+
+	double CurentN = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));;
+
+	return CurentN;
 }
 
-void formula(double arc2, double n, double x)
-{
-	arc2 += pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
+double arctg(double x, double Eps, int &n) {
+	long MAxIters = 1000;
+
+	double arc1 = 0, arc2 = M_PI_2;
+
+	for (n = 0; n < MAxIters; n++) {
+		arc2 += NextElement(x, n);
+
+		if (abs(arc2 - arc1) < Eps) {
+			break;
+		}
+
+
+		if (MAxIters - n < 2) {
+			break;
+			return 0;
+		}
+
+		arc1 = arc2;
+	}
+	return arc2;
 }
 
+
+int CreateRow(double x, double Eps) {
+	int n = 0;
+	if (arctg(x, Eps, n) == 0) {
+		cout << "small EPS";
+		return 0;
+
+	}
+	else {
+		cout << "|" << setw(14) << x
+			<< "|" << setw(14) << arctg(x, Eps, n)
+			<< "|" << setw(14) << atan(x)
+			<< "|" << setw(13) << n << "|\n";
+		return 1;
+	}
+}
 
 
 int main() {
-	double X1, X2, dX, Eps;
-	const int kMaxIter = 1000;
+
+	double x1, x2, dx, Eps;
+
+
 	cout << fixed;
-	cout << "X must be greater than 1\n";
+	cout << "X must be less than 1\n";
 	cout << "Please, enter X start: ";
-	cin >> X1;
+	cin >> x1;
 	cout << "Please, enter X end: ";
-	cin >> X2;
+	cin >> x2;
 	cout << "Please, enter dX: ";
-	cin >> dX;
-	cout << "Please, enter EPS: ";
+	cin >> dx;
+	cout << "Please, enter Eps: ";
 	cin >> Eps;
 
-	if (dX > 0 && X2 > 1 && X1 > 1) {
 
+	if (dx > 0 && x2 > 1) {
 
-		Head();
+		tablehead();
+		for (double x = x1; x <= x2; x += dx) {
 
-		double arc1, arc2;
-
-		for (double x = X1; x <= X2; x += dX)
-		{
-
-			arc1 = 0, arc2 = M_PI_2;
-
-			for (int n = 0; n < kMaxIter; n++) {
-
-				formula(arc2, n, x);
-
-				if (abs(arc2 - arc1) < Eps)
-				{
-					Table(arc2, x, n);
-					break;
-				}
-
-
-				if (kMaxIter - n < 2) {
-					cout << "small EPS";
-					return 2;
-				}
-
-				arc1 = arc2;
+			if (CreateRow(x, Eps)) {
+				continue;
 			}
+			else {
+				break;
+			}
+
 		}
 		cout << string(60, '-');
+
 	}
 
 	else {
-		cout << "Error , Invalid values";
+		cout <<"Error, Invalid values";
 	}
 
 	return 0;

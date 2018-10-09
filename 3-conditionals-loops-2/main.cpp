@@ -31,7 +31,8 @@ int main() {
 			<< string(60, '-') << endl;
 		double arc1, arc2;
 
-		for (double x = X1; x <= X2; x += dX) {
+		for (double x = X1; x <= X2; x += dX) 
+		{
 
 			arc1 = 0, arc2 = M_PI_2;
 
@@ -48,7 +49,8 @@ int main() {
 				}
 
 
-				if (kMaxIter - n < 2) {
+				if (kMaxIter - n < 2) 
+{
 					cout << "small EPS";
 					return 2;
 				}
