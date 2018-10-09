@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void Head() {
+void head() {
 	cout << string(60, '-') << "\n|"
 		<< setw(8) << "X" << setw(7)
 		<< "|" << setw(12) << "arctg(x)"
@@ -16,20 +16,20 @@ void Head() {
 		<< string(60, '-') << endl;
 }
 
-double Element(double x, int n) 
+double element(double x, int n) 
 {
 
-	double Heard = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
-	return Heard;
+	double heard = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
+	return heard;
 }
 
-double Arctg(double x, double Eps, int &n) {
+double arctg(double x, double Eps, int &n) {
 	long kMaxIter = 1000;
 
 	double arc1 = 0, arc2 = M_PI_2;
 
 	for (n = 0; n < kMaxIter; n++) {
-		arc2 +=Element(x, n);
+		arc2 +=element(x, n);
 
 		if (abs(arc2 - arc1) < Eps) {
 			break;
@@ -46,16 +46,16 @@ double Arctg(double x, double Eps, int &n) {
 }
 
 
-int Bow(double x, double Eps) {
+int bow(double x, double Eps) {
 	int n = 0;
-	if (Arctg(x, Eps, n) == 0) {
+	if (arctg(x, Eps, n) == 0) {
 		cout << "small EPS";
 		return 0;
 
 	}
 	else {
 		cout << "|" << setw(14) << x
-			<< "|" << setw(14) << Arctg(x, Eps, n)
+			<< "|" << setw(14) << arctg(x, Eps, n)
 			<< "|" << setw(14) << atan(x)
 			<< "|" << setw(13) << n << "|\n";
 		return 1;
@@ -82,10 +82,10 @@ int main() {
 
 	if (dx > 0 && x2 > 1) {
 
-		Head();
+		head();
 		for (double x = x1; x <= x2; x += dx) {
 
-			if (Bow(x, Eps)) 
+			if (bow(x, Eps)) 
 			{
 				continue;
 			}
