@@ -25,7 +25,7 @@ double PrintFormula(double x, int n)
 
 double Arctg(double x, double Eps, int &n) 
 {
-	long kMaxIter = 1000;
+	int kMaxIter = 1000;
 	double arc1 = 0, arc2 = M_PI_2;
 	for (n = 0; n < kMaxIter; n++) 
 	{
@@ -97,9 +97,9 @@ int main()
 		cout << string(60, '-');
 	}
 
-	else 
+	else
 	{
-		cout <<"Error, Invalid values";
+		cout << "Error, Invalid values";
 	}
 	return 0;
 }
