@@ -45,7 +45,7 @@ double Arctg(double x, double Eps, int &n)
 }
 
 
-int Arcrg_2(double x, double Eps) 
+int Arctg2(double x, double Eps) 
 {
 	int n = 0;
 	if (Arctg(x, Eps, n) == 0)
@@ -84,7 +84,7 @@ int main()
 		PrintTableHead();
 		for (double x = x1; x <= x2; x += dx) 
 		{
-			if (Arcrg_2(x, Eps))
+			if (Arctg2(x, Eps))
 			{
 				continue;
 			}
