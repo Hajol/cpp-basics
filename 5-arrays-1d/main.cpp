@@ -23,7 +23,7 @@ int main()
 		cin >> arr[i];
 	}
 	cout << "\n The minimum element index of the array is : " << FindArgMin(arr, n) << endl;
-	cout << "\n Summ of the elements between the first and second negative: " <<GetSum(arr, n) << endl;
+	cout << "\n Sum of the elements between the first and second negative: " <<GetSum(arr, n) << endl;
 	cout << "\n Converted array:" << endl;
 	TransformArray(arr, n);
 	for (int i = 0; i < n; i++) 
@@ -53,7 +53,7 @@ double FindArgMin(double *arr, int n)
 
 double GetSum(double *arr, int n)
 {
-	double summ = 0.0;
+	double sum = 0.0;
 	bool flag = false;
 	int begin = 0;
 	int end = 0;
@@ -74,9 +74,9 @@ double GetSum(double *arr, int n)
 
 	for (int i = begin + 1; i < end; i++) 
 	{
-		summ += arr[i];
+		sum += arr[i];
 	}
-	return summ;
+	return sum;
 }
 
 void TransformArray(double *arr, int n)
