@@ -23,7 +23,7 @@ int main()
 		cin >> arr[i];
 	}
 	cout << "\n The minimum element index of the array is : " << FindArgMin(arr, n) << endl;
-	cout << "\n Sum of the elements between the first and second negative: " <<GetSum(arr, n) << endl;
+	cout << "\n Summ of the elements between the first and second negative: " <<GetSum(arr, n) << endl;
 	cout << "\n Converted array:" << endl;
 	TransformArray(arr, n);
 	for (int i = 0; i < n; i++) 
