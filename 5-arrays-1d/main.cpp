@@ -1,11 +1,15 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+
 using namespace std;
+
 double FindArgMin(double *arr, int n);
 double GetSum(double *arr, int n);
 void TransformArray(double *arr, int n);
-int main() {
+
+int main() 
+{
 	int n = 0;
 
 	cout << "Enter the number of items (n>0), n=";
@@ -32,11 +36,12 @@ int main() {
 	return 0;
 }
 
-double  FindArgMin(double *arr, int n)
+double FindArgMin(double *arr, int n)
 {
 	double min = arr[0];
 	int min_id = 0;
-	for (int i = 1; i < n; i++) {
+	for (int i = 1; i < n; i++) 
+	{
 		if (arr[i] < min)
 		{
 			min = arr[i];
@@ -53,18 +58,22 @@ double GetSum(double *arr, int n)
 	int begin = 0;
 	int end = 0;
 
-	for (int i = 0; i < n; i++) {
-		if (arr[i] < 0 && !flag) {
+	for (int i = 0; i < n; i++) 
+	{
+		if (arr[i] < 0 && !flag) 
+		{
 			begin = i;
 			flag = true;
 		}
-		else if (arr[i] < 0 && flag) {
+		else if (arr[i] < 0 && flag) 
+		{
 			end = i;
 			break;
 		}
 	}
 
-	for (int i = begin + 1; i < end; i++) {
+	for (int i = begin + 1; i < end; i++) 
+	{
 		summ += arr[i];
 	}
 	return summ;
@@ -73,8 +82,10 @@ double GetSum(double *arr, int n)
 void TransformArray(double *arr, int n)
 {
 	for (int i = 0; i < n; i++)
-		for (int j = 0; j < n - i - 1; j++) {
-			if ((abs(arr[j]) > 1) and !(abs(arr[j + 1]) > 1)) {
+		for (int j = 0; j < n - i - 1; j++) 
+		{
+			if ((abs(arr[j]) > 1) and !(abs(arr[j + 1]) > 1)) 
+			{
 				swap(arr[j], arr[j + 1]);
 			}
 		}
