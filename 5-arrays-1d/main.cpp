@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
-#include <locale> 
 using namespace std;
 double FindArgMin(double *arr, int n);
 double GetSum(double *arr, int n);
