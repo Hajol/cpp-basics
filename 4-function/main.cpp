@@ -6,8 +6,7 @@
 
 using namespace std;
 
-void PrintTableHead()
-{
+void PrintTableHead() {
 	cout << string(60, '-') << "\n|"
 		<< setw(8) << "X" << setw(7)
 		<< "|" << setw(12) << "arctg(x)"
@@ -17,89 +16,54 @@ void PrintTableHead()
 		<< string(60, '-') << endl;
 }
 
-double PrintFormula(double x, int n) 
-{
-	double Formula = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
-	return Formula;
-}
+double arctg(double x, double eps, int &n, const int kMaxIters) {
+	double arc1, arc2 = M_PI_2;
+	for (n = 0; n < kMaxIters; n++) {
+		arc1 = pow(-1, n + 1) / ((2 * n + 1)*pow(x, 2 * n + 1));
+		arc2 += arc1;
 
-double Arctg(double x, double Eps, int &n) 
-{
-	int kMaxIter = 1000;
-	double arc1 = 0, arc2 = M_PI_2;
-	for (n = 0; n < kMaxIter; n++) 
-	{
-		arc2 += PrintFormula(x, n);
-		if (abs(arc2 - arc1) < Eps) 
-		{
+		if (abs(arc1) < eps)
 			break;
-		}
-
-		if (kMaxIter - n < 2) 
-		{
-			break;
-		}
-		arc1 = arc2;
 	}
 	return arc2;
 }
 
-
-int Arctg2(double x, double Eps) 
-{
+void CreateRow(double x, double Eps) {
 	int n = 0;
-	if (Arctg(x, Eps, n) == 0)
-	{
-		cout << "small EPS";
-		return 0;
-	}
+	const int kMaxIters = 100;
+	double y = arctg(x, Eps, n, kMaxIters);
 
-	else 
-	{
-		cout << "|" << setw(14) << x
-			<< "|" << setw(14) << Arctg(x, Eps, n)
-			<< "|" << setw(14) << atan(x)
-			<< "|" << setw(13) << n << "|\n";
-		return 1;
-	}
+	cout << "|" << setw(14) << x << "|" << setw(14);
+	if (n == kMaxIters)
+		cout << "ERROR";
+	else
+		cout << y;
+	cout << "|" << setw(14) << atan(x)
+		<< "|" << setw(13) << n << "|\n";
 }
 
-
-int main() 
-{
+int main() {
 	double x1, x2, dx, Eps;
+
 	cout << fixed;
 	cout << "X must be greater than 1\n";
-	cout << "Please, enter X start: ";
+	cout << "Please, enter X star): ";
 	cin >> x1;
 	cout << "Please, enter X end: ";
 	cin >> x2;
 	cout << "Please, enter dX: ";
 	cin >> dx;
-	cout << "Please, enter Eps: ";
+	cout << "Please, enter eps: ";
 	cin >> Eps;
 
-	if (dx > 0 && x2 > 1 && x1 > 1) 
-	{
+	if (dx > 0 && x2 > 1 && x1 > 1) {
 		PrintTableHead();
-		for (double x = x1; x <= x2; x += dx) 
-		{
-			if (Arctg2(x, Eps))
-			{
-				continue;
-			}
-
-			else 
-			{
-				break;
-			}
-		}
+		for (double x = x1; x <= x2; x += dx)
+			CreateRow(x, Eps);
 		cout << string(60, '-');
 	}
-
 	else
-	{
 		cout << "Error, Invalid values";
-	}
+
 	return 0;
 }

@@ -5,26 +5,26 @@
 using namespace std;
 
 int main() {
-	string s, file_name;
+	string file_name;
 
-	cout << "Write  file name (default name 'Text') -> ";
+	cout << "Write  file name -> ";
 	cin >> file_name;
 	file_name += ".txt";
 	ifstream fin(file_name);
 
 	if (!fin.is_open()) 
 	{
-		cout << "can't open file!" << endl;
+		cout << "can't open "<< file_name << endl;
 		return 1;
 	}
 
-	cout << "Quote : " << endl;
-
+	cout << "Quotes : " << endl;
+	string s;
 	int cou = 0;
 	while (getline(fin, s, '"'))
 	{
-		if (cou % 2) std::cout << s << endl;
-		++cou;
+		if (cou % 2) cout << s << endl;
+		cou++;
 	}
 	fin.close();
 	return 0;
