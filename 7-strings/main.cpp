@@ -20,16 +20,16 @@ int main() {
 
 	cout << "Quotes : " << endl;
 	string s;
-	bool end_qoute = false;
+	bool end_quote = false;
 	while (getline(fin, s, '"'))
 	{
-		if (end_qoute)
+		if (end_quote)
 		{
 			cout << s << endl;
-			end_qoute = false;
+			end_quote = false;
 		}
 		else
-			end_qoute = true;
+			end_quote = true;
 	}
 	fin.close();
 	return 0;
