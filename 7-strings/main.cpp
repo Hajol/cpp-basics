@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 	string file_name;
 
-	cout << "Write  file name -> ";
+	cout << "Write file name -> ";
 	cin >> file_name;
 	file_name += ".txt";
 	ifstream fin(file_name);
@@ -20,11 +20,16 @@ int main() {
 
 	cout << "Quotes : " << endl;
 	string s;
-	int cou = 0;
+	bool end_qoute = false;
 	while (getline(fin, s, '"'))
 	{
-		if (cou % 2) cout << s << endl;
-		cou++;
+		if (end_qoute)
+		{
+			cout << s << endl;
+			end_qoute = false;
+		}
+		else
+			end_qoute = true;
 	}
 	fin.close();
 	return 0;
