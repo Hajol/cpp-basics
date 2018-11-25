@@ -4,7 +4,8 @@
 
 using namespace std;
 
-int main() {
+int main() 
+{
 	string file_name;
 
 	cout << "Write file name -> ";

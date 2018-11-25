@@ -50,7 +50,7 @@ int main() {
 
 
 				if (kMaxIter - n < 2) 
-{
+				{
 					cout << "small EPS";
 					return 2;
 				}
