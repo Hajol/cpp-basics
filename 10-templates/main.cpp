@@ -9,8 +9,9 @@
 
 using namespace std;
 
-int SumInColumn(double arr[Row][Col], int column) {
-	double result = 0;
+template <class T>
+T SumInColumn(T arr[Row][Col], int column) {
+	T result = 0;
 	for (int i = 0; i < Row; i++)
 	{
 		result += arr[i][column];
@@ -18,14 +19,16 @@ int SumInColumn(double arr[Row][Col], int column) {
 	return result;
 }
 
-void SwapColumns(int arr[Row][Col], int col_1, int col_2) {
+template <class T>
+void SwapColumns(T arr[Row][Col], int col_1, int col_2) {
 	for (int i = 0; i < Row; i++)
 	{
 		swap(arr[i][col_1], arr[i][col_2]);
 	}
 }
 
-void GetSubzeroModulo(int arr[Row][Col], int Subzero_Modulo[Col]) {
+template <class T>
+void GetSubzeroModulo(T arr[Row][Col], T Subzero_Modulo[Col]) {
 	for (int i = 0; i < Col; i++)
 	{
 		Subzero_Modulo[i] = 0;
@@ -37,7 +40,8 @@ void GetSubzeroModulo(int arr[Row][Col], int Subzero_Modulo[Col]) {
 	}
 }
 
-void BubbleSort(int arr[Row][Col], int Subzero_Modulo[Col])
+template <class T>
+void BubbleSort(T arr[Row][Col], T Subzero_Modulo[Col])
 {
 	for (int i = 0; i < Col - 1; i++)
 	{
@@ -51,13 +55,14 @@ void BubbleSort(int arr[Row][Col], int Subzero_Modulo[Col])
 	}
 }
 
-void PrintSumColumns(int arr[Row][Col], int N[Col]) {
+template <class T>
+void PrintSumColumns(T arr[Row][Col], T N[Col]) {
 	cout << "Sum In Columns with subzero elements: \n";
 	bool have = false;
 	for (int i = 0; i < Col; i++)
 	{
 		if (N[i] > 0) {
-			cout << i + 1 << ". sum = " << SumInColumn(arr, i) << endl;
+			cout << i + 1 << ". sum = " << SumInColumn<T>(arr, i) << endl;
 			have = true;
 		}
 	}
@@ -65,7 +70,8 @@ void PrintSumColumns(int arr[Row][Col], int N[Col]) {
 		cout << "No columns with subzero elements!!!\n";
 }
 
-void PrintArray(int arr[Row][Col])
+template <class T>
+void PrintArray(T arr[Row][Col])
 {
 	cout << "Array: " << endl;
 	cout << string(16, '-') << endl;
@@ -81,7 +87,8 @@ void PrintArray(int arr[Row][Col])
 	cout << string(16, '-') << endl << endl;
 }
 
-void ReadArray(int arr[Row][Col], string name)
+template <class T>
+void ReadArray(T arr[Row][Col], string name)
 {
 	ifstream fin(name + ".txt");
 	if (!fin.is_open()) {
@@ -98,19 +105,38 @@ void ReadArray(int arr[Row][Col], string name)
 	fin.close();
 }
 
-int main()
-{
-	int arr[Row][Col];
-	ReadArray(arr, "file");
+template <class TypeAr>
+void start(string name) {
+	TypeAr arr[Row][Col];
+	ReadArray(arr, name);
 	PrintArray(arr);
 
 	cout << "Sorted array: \n\n";
-	int N[Col];
+	TypeAr N[Col];
 	GetSubzeroModulo(arr, N);
 	BubbleSort(arr, N);
 	PrintArray(arr);
 
 	PrintSumColumns(arr, N);
+}
 
+int main() {
+error:
+	cout << "Select the data type (0-integer, 1-double, 2-float): ";
+	string select;
+	cin >> select;
+	if (select == "0") {
+		start<int>("int");
+	}
+	else if (select == "1") {
+		start<double>("double");
+	}
+	else if (select == "2") {
+		start<float>("float");
+	}
+	else {
+		cout << "Error input! (Only 0/1/2)" << endl;
+		goto error;
+	}
 	return 0;
 }
