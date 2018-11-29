@@ -23,6 +23,7 @@
     <ProjectGuid>{2DD5EAF3-2FAC-488D-B51E-78CCB2B9105C}</ProjectGuid>
     <RootNamespace>My9multifileproject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <ProjectName>09-multi-file-project</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
