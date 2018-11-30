@@ -9,8 +9,8 @@
 
 using namespace std;
 
-int SumInColumn(double arr[Row][Col], int column) {
-	double result = 0;
+int SumInColumn(int arr[Row][Col], int column) {
+	int result = 0;
 	for (int i = 0; i < Row; i++)
 	{
 		result += arr[i][column];
