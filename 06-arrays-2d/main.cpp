@@ -1,68 +1,26 @@
 #include <iostream>
-#include <fstream>
 #include <iomanip>
+#include <fstream>
 #include <string>
 
 using namespace std;
 
-template <class T>
-T** ReadMatrix(string file_name, int num_rows, int num_cols);
-
-template <class T>
-void PrintMatrix(T** matrix, int num_rows, int num_cols);
-
-template <class T>
-T* ComputeCharacteristics(T** matrix, int num_rows, int num_cols);
-
-template <class T>
-void SortMatrix(T** matrix, int num_rows, int num_cols);
-
-template <class T>
-T SumColumn(T** matrix, int num_rows, int column);
-
-template <class T>
-void PrintColumnsSums(T** matrix, int num_cols, int num_rows);
-
-template <class T>
-int Execute(string file_name);
+int** ReadMatrix(string file_name, int num_rows, int num_cols);
+void PrintMatrix(int** matrix, int num_rows, int num_cols);
+int* ComputeCharacteristics(int** matrix, int num_rows, int num_cols);
+void SortMatrix(int** matrix, int num_rows, int num_cols);
+int SumColumn(int** matrix, int num_rows, int column);
+void PrintColumnsSums(int** matrix, int num_cols, int num_rows);
 
 int main()
-{
-	string select;
-selection:
-	cout << "Select the data type (0-integer, 1-double, 2-float): ";
-	cin >> select;
-	if (select == "0")
-    {
-		Execute<int>("int.txt");
-	}
-	else if (select == "1")
-    {
-		Execute<double>("double.txt");
-	}
-	else if (select == "2")
-    {
-		Execute<float>("float.txt");
-	}
-	else
-    {
-		cout << "Error input! (Only 0, 1 or 2).\n\n";
-		goto selection;
-	}
-
-	return 0;
-}
-
-template <class T>
-int Execute(string file_name)
 {
     int num_rows = 3;
     int num_cols = 4;
 
-    T** matrix = ReadMatrix<T>(file_name, num_rows, num_cols);
+    int** matrix = ReadMatrix("matrix.txt", num_rows, num_cols);
     if (!matrix) return 1;
 
-    cout << "\nInitial matrix:\n";
+    cout << "Initial matrix:\n";
     PrintMatrix(matrix, num_rows, num_cols);
     cout << endl;
 
@@ -79,8 +37,7 @@ int Execute(string file_name)
     return 0;
 }
 
-template <class T>
-T** ReadMatrix(string file_name, int num_rows, int num_cols)
+int** ReadMatrix(string file_name, int num_rows, int num_cols)
 {
     ifstream fin(file_name);
     if (!fin.is_open())
@@ -89,10 +46,10 @@ T** ReadMatrix(string file_name, int num_rows, int num_cols)
         return nullptr;
     }
 
-    T** matrix = new T*[num_rows];
+    int** matrix = new int*[num_rows];
     for (int i = 0; i < num_rows; i++)
     {
-        matrix[i] = new T[num_cols];
+        matrix[i] = new int[num_cols];
         for (int j = 0; j < num_cols; j++)
             fin >> matrix[i][j];
     }
@@ -100,8 +57,7 @@ T** ReadMatrix(string file_name, int num_rows, int num_cols)
     return matrix;
 }
 
-template <class T>
-void PrintMatrix(T** matrix, int num_rows, int num_cols)
+void PrintMatrix(int** matrix, int num_rows, int num_cols)
 {
     cout << string(5 * num_cols + 1, '-');
     for (int i = 0; i < num_rows; i++)
@@ -112,7 +68,7 @@ void PrintMatrix(T** matrix, int num_rows, int num_cols)
     }
     cout << endl << string(5 * num_cols + 1, '-');
 
-    T* characteristics = ComputeCharacteristics(matrix, num_rows, num_cols);
+    int* characteristics = ComputeCharacteristics(matrix, num_rows, num_cols);
     cout << "\n|";
     for (int j = 0; j < num_cols; j++)
         cout << setw(3) << characteristics[j] << setw(2) << "|";
@@ -120,24 +76,22 @@ void PrintMatrix(T** matrix, int num_rows, int num_cols)
     delete[] characteristics;
 }
 
-template <class T>
-T* ComputeCharacteristics(T** matrix, int num_rows, int num_cols)
+int* ComputeCharacteristics(int** matrix, int num_rows, int num_cols)
 {
-    T* characteristics = new T[num_cols];
+    int* characteristics = new int[num_cols];
     for (int j = 0; j < num_cols; j++)
     {
         characteristics[j] = 0;
         for (int i = 0; i < num_rows; i++)
-            if ((matrix[i][j] < 0) && (static_cast<int>(matrix[i][j]) % 2 != 0))
+            if ((matrix[i][j] < 0) && (matrix[i][j] % 2 != 0))
                 characteristics[j] += abs(matrix[i][j]);
     }
     return characteristics;
 }
 
-template <class T>
-void SortMatrix(T** matrix, int num_rows, int num_cols)
+void SortMatrix(int** matrix, int num_rows, int num_cols)
 {
-    T* characteristics = ComputeCharacteristics(matrix, num_rows, num_cols);
+    int* characteristics = ComputeCharacteristics(matrix, num_rows, num_cols);
 
     for (int i = 0; i < num_cols - 1; i++)
         for (int j = 0; j < num_cols - i - 1; j++)
@@ -151,17 +105,15 @@ void SortMatrix(T** matrix, int num_rows, int num_cols)
     delete[] characteristics;
 }
 
-template <class T>
-T SumColumn(T** matrix, int num_rows, int column)
+int SumColumn(int** matrix, int num_rows, int column)
 {
-    T sum = 0;
+    int sum = 0;
     for (int i = 0; i < num_rows; i++)
         sum += matrix[i][column];
     return sum;
 }
 
-template <class T>
-void PrintColumnsSums(T** matrix, int num_rows, int num_cols)
+void PrintColumnsSums(int** matrix, int num_rows, int num_cols)
 {
     cout << "\nSum of elements in columns with at least one negative element:\n";
     bool no_negatives = true;
